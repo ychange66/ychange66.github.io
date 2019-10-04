@@ -265,6 +265,113 @@
             
               
                 
+                <a class="post-title-link" href="/2019/10/04/dsa签名/" itemprop="url">
+                  Untitled
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Posted on</span>
+            <time itemprop="dateCreated" datetime="2019-10-04T12:36:12+08:00" content="2019-10-04">
+              2019-10-04
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="dsa签名"><a href="#dsa签名" class="headerlink" title="dsa签名"></a>dsa签名</h2><p>(p,q,g,y)是公钥</p>
+<h2 id="k共享攻击"><a href="#k共享攻击" class="headerlink" title="k共享攻击"></a>k共享攻击</h2><p>r = (g**k mod p) mod q</p>
+<p>s = (H(m) + xr) k**(-1) mod q</p>
+<p>签名结果(r,s)。需要注意的是，这里与Elgamal很重要的不同是这里使用了哈希函数对消息进行了哈希处理。</p>
+<p>s1 = (H(m1)+xr)k**-1 mod q</p>
+<p>s2 = (H(m2)+xr)k**-1 mod q</p>
+<p>因此，s1*k mod q = (H(m1) +xr) mod q</p>
+<p>s2*k mod q = (H(m2)+ xr) mod q</p>
+<p>k(s1 - s2) = H(m1) - H(m2) mod q</p>
+<p>此时就可以解出k了，进一步求出私钥k。</p>
+
+          
+        
+      
+    </div>
+
+	<div>
+      
+    </div>
+	
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2019/03/23/密码学积累/" itemprop="url">
                   Untitled
                 </a>
@@ -390,7 +497,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">1</span>
+              <span class="site-state-item-count">2</span>
               <span class="site-state-item-name">posts</span>
             </a>
           </div>
