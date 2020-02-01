@@ -84,7 +84,7 @@
 
 <meta property="og:type" content="website">
 <meta property="og:title" content="ychange66">
-<meta property="og:url" content="http://yoursite.com/archives/index.html">
+<meta property="og:url" content="http://yoursite.com/page/3/index.html">
 <meta property="og:site_name" content="ychange66">
 <meta property="og:locale" content="default">
 <meta name="twitter:card" content="summary">
@@ -106,7 +106,7 @@
   };
 </script>
 
-  <title> Archive | ychange66  -  </title>
+  <title> ychange66  -  </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="">
@@ -133,7 +133,9 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left  page-archive  ">
+  <div class="container one-collumn sidebar-position-left 
+   page-home 
+ ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -230,70 +232,119 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
+  <section id="posts" class="posts-expand">
+    
+      
 
-  <section id="posts" class="posts-collapse">
-    <span class="archive-move-on"></span>
+  
+  
 
-    <span class="archive-page-counter">
-      
-      
-      
-        
-      
-      Um..! 3 posts in total. Keep on posting.
-    </span>
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
 
     
+      <header class="post-header">
 
-      
-      
-      
-
-      
         
-        <div class="collection-title">
-          <h2 class="archive-year motion-element" id="archive-year-2020">2020</h2>
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2019/10/06/密码学积累/" itemprop="url">
+                  LFSR trick
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Posted on</span>
+            <time itemprop="dateCreated" datetime="2019-10-06T18:25:20+08:00" content="2019-10-06">
+              2019-10-06
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
         </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
       
       
 
       
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
         
-            <a class="post-title-link" href="/2020/01/31/FlowDroid的环境搭建/" itemprop="url">
-              
-                <span itemprop="name">FlowDroid的环境搭建</span>
-              
-            </a>
+          
+            <h2 id="循环移位"><a href="#循环移位" class="headerlink" title="循环移位"></a>循环移位</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">import os</span><br><span class="line">from Crypto.Util.number import bytes_to_long</span><br><span class="line">from secret import ENCRPYTION_KEY</span><br><span class="line">assert len(ENCRPYTION_KEY)==16</span><br><span class="line"></span><br><span class="line">class circle():</span><br><span class="line">    def __init__(self):</span><br><span class="line">        self.iv=bytes_to_long(os.urandom(4))</span><br><span class="line"></span><br><span class="line">    def LFSR(self):</span><br><span class="line">        self.iv= self.iv &gt;&gt; 1 | (self.iv &amp; 1) &lt;&lt; 31</span><br><span class="line"></span><br><span class="line">    def getbyte(self):</span><br><span class="line">        x=self.iv</span><br><span class="line">        x ^= x &gt;&gt; 16</span><br><span class="line">        x ^= x &gt;&gt; 8</span><br><span class="line">        return (x &amp; 255)</span><br><span class="line"></span><br><span class="line">    def nextbyte(self):</span><br><span class="line">        byte=self.getbyte()</span><br><span class="line">        self.LFSR()</span><br><span class="line">        return byte</span><br><span class="line"></span><br><span class="line">def enc_key():</span><br><span class="line">    p=circle()</span><br><span class="line">    cipher=&apos;&apos;</span><br><span class="line">    for s in ENCRPYTION_KEY:</span><br><span class="line">        cipher += chr(ord(s) ^ p.nextbyte())</span><br><span class="line">    with open(&apos;info&apos;,&apos;w&apos;) as f:</span><br><span class="line">        f.write(cipher.encode(&quot;hex&quot;))</span><br></pre></td></tr></table></figure>
+<p>这段代码的意思是：</p>
+<p>设32位数，4个字节</p>
+<p>每个字节分别是x1,x2,x3,x4 </p>
+<p>返回值是x4 = x1 ^ x2 ^ x3 ^ x4</p>
+<p>循环移位之后异或的组合并不变,所以就变成了8位的密钥。</p>
+<p>256位变成32位，直接爆破得到结果。</p>
+<p>解密算法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">cipher=open(&quot;info&quot;,&quot;r&quot;).read().decode(&quot;hex&quot;)</span><br><span class="line">for k in range(256):</span><br><span class="line">    kk=k</span><br><span class="line">    m=&apos;&apos;</span><br><span class="line">    for s in cipher:</span><br><span class="line">        m += chr(ord(s) ^ kk)</span><br><span class="line">        kk = kk &gt;&gt; 1 | (kk &amp; 1) &lt;&lt; 7</span><br><span class="line">    print m</span><br></pre></td></tr></table></figure>
+          
         
-      </h1>
+      
+    </div>
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2020-01-31T18:25:20+08:00"
-              content="2020-01-31" >
-          01-31
-        </time>
-      </div>
+	<div>
+      
+    </div>
+	
+    <div>
+      
+    </div>
 
-    </header>
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
   </article>
 
 
-
     
-
   </section>
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/archives/page/2/">2</a><a class="page-number" href="/archives/page/3/">3</a><a class="extend next" rel="next" href="/archives/page/2/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span>
   </nav>
-
 
 
 
@@ -511,8 +562,6 @@
 
 
   
-  
-
 
   
 
