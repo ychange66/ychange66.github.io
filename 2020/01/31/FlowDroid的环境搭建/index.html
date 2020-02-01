@@ -90,15 +90,15 @@
 <meta property="og:site_name" content="ychange66">
 <meta property="og:description" content="FlowDroid的环境搭建参考内容：https://github.com/secure-software-engineering/soot-infoflow-android/wiki 使用flowdroid有两种办法，Obtaining the nightly builds和Building FlowDroid From Source。 Obtaining the nightly builds就">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="http://yoursite.com/2020/01/31/FlowDroid的环境搭建/FlowDroid的环境搭建/release_error.JPG">
-<meta property="og:image" content="http://yoursite.com/2020/01/31/FlowDroid的环境搭建/FlowDroid的环境搭建/运行程序.JPG">
-<meta property="og:image" content="http://yoursite.com/2020/01/31/FlowDroid的环境搭建/FlowDroid的环境搭建/运行结果.JPG">
-<meta property="og:image" content="http://yoursite.com/2020/01/31/FlowDroid的环境搭建/FlowDroid的环境搭建/分析apk.JPG">
-<meta property="og:updated_time" content="2020-02-01T14:53:59.347Z">
+<meta property="og:image" content="http://yoursite.com/images/release_error.JPG">
+<meta property="og:image" content="http://yoursite.com/images/运行程序.JPG">
+<meta property="og:image" content="http://yoursite.com/images/运行结果.JPG">
+<meta property="og:image" content="http://yoursite.com/images/分析apk.JPG">
+<meta property="og:updated_time" content="2020-02-01T16:10:20.283Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="FlowDroid的环境搭建">
 <meta name="twitter:description" content="FlowDroid的环境搭建参考内容：https://github.com/secure-software-engineering/soot-infoflow-android/wiki 使用flowdroid有两种办法，Obtaining the nightly builds和Building FlowDroid From Source。 Obtaining the nightly builds就">
-<meta name="twitter:image" content="http://yoursite.com/2020/01/31/FlowDroid的环境搭建/FlowDroid的环境搭建/release_error.JPG">
+<meta name="twitter:image" content="http://yoursite.com/images/release_error.JPG">
 
 
 
@@ -305,18 +305,18 @@
         <h1 id="FlowDroid的环境搭建"><a href="#FlowDroid的环境搭建" class="headerlink" title="FlowDroid的环境搭建"></a>FlowDroid的环境搭建</h1><p>参考内容：<a href="https://github.com/secure-software-engineering/soot-infoflow-android/wiki" target="_blank" rel="noopener">https://github.com/secure-software-engineering/soot-infoflow-android/wiki</a></p>
 <p>使用flowdroid有两种办法，Obtaining the nightly builds和Building FlowDroid From Source。</p>
 <h2 id="Obtaining-the-nightly-builds"><a href="#Obtaining-the-nightly-builds" class="headerlink" title="Obtaining the nightly builds"></a>Obtaining the nightly builds</h2><p>就是使用打包好的jar包来直接调用，下面来尝试一下。</p>
-<p><img src="FlowDroid的环境搭建\release_error.JPG" alt="release_error"></p>
+<p><img src="/images/release_error.JPG" alt="release_error"></p>
 <p>不知道该怎么解决这个问题，所以我们尝试第二种方法。</p>
 <h2 id="Building-FlowDroid-From-Source"><a href="#Building-FlowDroid-From-Source" class="headerlink" title="Building FlowDroid From Source"></a>Building FlowDroid From Source</h2><p>所以，不如干脆直接使用这种方法使用eclipse将五个项目引入。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">heros:   https://github.com/Sable/heros.git</span><br><span class="line">jasmin:   https://github.com/Sable/jasmin.git</span><br><span class="line">soot:  https://github.com/Sable/soot.git</span><br><span class="line">soot-infoflow:    https://github.com/secure-software-engineering/soot-infoflow.git</span><br><span class="line">soot-infoflow-android:    https://github.com/secure-software-engineering/soot-infoflow-android.git</span><br></pre></td></tr></table></figure>
 <p>可参考下面链接的步骤一步一步引入</p>
 <p><a href="https://blog.csdn.net/wang8978/article/details/88241917" target="_blank" rel="noopener">https://blog.csdn.net/wang8978/article/details/88241917</a></p>
 <p>然后运行soot-infoflow-android项目中的soot.jimple.infoflow.android.TestApps.Test.java方法，运行时要设置参数。</p>
-<p><img src="FlowDroid的环境搭建\运行程序.JPG" alt="运行程序"></p>
+<p><img src="/images/运行程序.JPG" alt="运行程序"></p>
 <p>运行结果如下图所示：</p>
-<p><img src="FlowDroid的环境搭建\运行结果.JPG" alt="运行结果"></p>
+<p><img src="/images/运行结果.JPG" alt="运行结果"></p>
 <p>对应的apk程序片段是：</p>
-<p><img src="FlowDroid的环境搭建\分析apk.JPG" alt="分析apk"></p>
+<p><img src="/images/分析apk.JPG" alt="分析apk"></p>
 
       
     </div>
