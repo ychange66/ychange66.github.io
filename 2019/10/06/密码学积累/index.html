@@ -82,18 +82,18 @@
 
 
 
-<meta name="description" content="循环移位&amp;lt; !–more–&amp;gt; 123456789101112131415161718192021222324252627282930import osfrom Crypto.Util.number import bytes_to_longfrom secret import ENCRPYTION_KEYassert len(ENCRPYTION_KEY)==16class circle">
+<meta name="description" content="循环移位">
 <meta name="keywords" content="crypto">
 <meta property="og:type" content="article">
 <meta property="og:title" content="LFSR trick">
 <meta property="og:url" content="http://yoursite.com/2019/10/06/密码学积累/index.html">
 <meta property="og:site_name" content="ychange66">
-<meta property="og:description" content="循环移位&amp;lt; !–more–&amp;gt; 123456789101112131415161718192021222324252627282930import osfrom Crypto.Util.number import bytes_to_longfrom secret import ENCRPYTION_KEYassert len(ENCRPYTION_KEY)==16class circle">
+<meta property="og:description" content="循环移位">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2020-05-06T07:02:01.002Z">
+<meta property="og:updated_time" content="2020-05-06T07:05:29.631Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="LFSR trick">
-<meta name="twitter:description" content="循环移位&amp;lt; !–more–&amp;gt; 123456789101112131415161718192021222324252627282930import osfrom Crypto.Util.number import bytes_to_longfrom secret import ENCRPYTION_KEYassert len(ENCRPYTION_KEY)==16class circle">
+<meta name="twitter:description" content="循环移位">
 
 
 
@@ -307,7 +307,7 @@
       
 
       
-        <h2 id="循环移位"><a href="#循环移位" class="headerlink" title="循环移位"></a>循环移位</h2><p>&lt; !–more–&gt;</p>
+        <h2 id="循环移位"><a href="#循环移位" class="headerlink" title="循环移位"></a>循环移位</h2><a id="more"></a>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">from</span> Crypto.Util.number <span class="keyword">import</span> bytes_to_long</span><br><span class="line"><span class="keyword">from</span> secret <span class="keyword">import</span> ENCRPYTION_KEY</span><br><span class="line"><span class="keyword">assert</span> len(ENCRPYTION_KEY)==<span class="number">16</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">circle</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></span><br><span class="line">        self.iv=bytes_to_long(os.urandom(<span class="number">4</span>))</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">LFSR</span><span class="params">(self)</span>:</span></span><br><span class="line">        self.iv= self.iv &gt;&gt; <span class="number">1</span> | (self.iv &amp; <span class="number">1</span>) &lt;&lt; <span class="number">31</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">getbyte</span><span class="params">(self)</span>:</span></span><br><span class="line">        x=self.iv</span><br><span class="line">        x ^= x &gt;&gt; <span class="number">16</span></span><br><span class="line">        x ^= x &gt;&gt; <span class="number">8</span></span><br><span class="line">        <span class="keyword">return</span> (x &amp; <span class="number">255</span>)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">nextbyte</span><span class="params">(self)</span>:</span></span><br><span class="line">        byte=self.getbyte()</span><br><span class="line">        self.LFSR()</span><br><span class="line">        <span class="keyword">return</span> byte</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">enc_key</span><span class="params">()</span>:</span></span><br><span class="line">    p=circle()</span><br><span class="line">    cipher=<span class="string">''</span></span><br><span class="line">    <span class="keyword">for</span> s <span class="keyword">in</span> ENCRPYTION_KEY:</span><br><span class="line">        cipher += chr(ord(s) ^ p.nextbyte())</span><br><span class="line">    <span class="keyword">with</span> open(<span class="string">'info'</span>,<span class="string">'w'</span>) <span class="keyword">as</span> f:</span><br><span class="line">        f.write(cipher.encode(<span class="string">"hex"</span>))</span><br></pre></td></tr></table></figure>
 <p>这段代码的意思是：</p>
 <p>设32位数，4个字节</p>
