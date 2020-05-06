@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /
+Allow: /posts/
+Disallow: /categories/
+Disallow: /tags/ 
+Disallow: /images/ 
+
+
+Sitemap: https://simp1er.github.io/sitemap.xml
+Sitemap: https://simp1er.github.io/baidusitemap.xml
