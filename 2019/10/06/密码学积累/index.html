@@ -66,7 +66,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="CTF Crypto && Android" />
+  <meta name="keywords" content="crypto," />
 
 
 
@@ -82,13 +82,18 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="ychange66">
-<meta property="og:url" content="http://yoursite.com/page/2/index.html">
+<meta name="description" content="循环移位&amp;lt; !–more–&amp;gt; 123456789101112131415161718192021222324252627282930import osfrom Crypto.Util.number import bytes_to_longfrom secret import ENCRPYTION_KEYassert len(ENCRPYTION_KEY)==16class circle">
+<meta name="keywords" content="crypto">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LFSR trick">
+<meta property="og:url" content="http://yoursite.com/2019/10/06/密码学积累/index.html">
 <meta property="og:site_name" content="ychange66">
+<meta property="og:description" content="循环移位&amp;lt; !–more–&amp;gt; 123456789101112131415161718192021222324252627282930import osfrom Crypto.Util.number import bytes_to_longfrom secret import ENCRPYTION_KEYassert len(ENCRPYTION_KEY)==16class circle">
 <meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2020-05-06T07:02:01.002Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="ychange66">
+<meta name="twitter:title" content="LFSR trick">
+<meta name="twitter:description" content="循环移位&amp;lt; !–more–&amp;gt; 123456789101112131415161718192021222324252627282930import osfrom Crypto.Util.number import bytes_to_longfrom secret import ENCRPYTION_KEYassert len(ENCRPYTION_KEY)==16class circle">
 
 
 
@@ -106,7 +111,7 @@
   };
 </script>
 
-  <title> ychange66  -  </title>
+  <title> LFSR trick | ychange66  -  </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="">
@@ -133,9 +138,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left 
-   page-home 
- ">
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -242,9 +245,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
   
@@ -264,10 +267,7 @@
             
             
               
-                
-                <a class="post-title-link" href="/2019/10/06/dsa签名/" itemprop="url">
-                  DSA签名
-                </a>
+                LFSR trick
               
             
           </h1>
@@ -307,58 +307,76 @@
       
 
       
-        
-          
-            <h1 id="dsa签名"><a href="#dsa签名" class="headerlink" title="dsa签名"></a>dsa签名</h1><p>DSA是一种非对称加密的算法，其中(p,q,g,y)是公钥</p>
-<p>&lt; !–more–&gt;</p>
-<h2 id="k共享攻击"><a href="#k共享攻击" class="headerlink" title="k共享攻击"></a>k共享攻击</h2><p>r = (g**k mod p) mod q</p>
-<p>s = (H(m) + xr) k**(-1) mod q</p>
-<p>签名结果(r,s)。需要注意的是，这里与Elgamal很重要的不同是这里使用了哈希函数对消息进行了哈希处理。</p>
-<p>s1 = (H(m1)+xr)k**-1 mod q</p>
-<p>s2 = (H(m2)+xr)k**-1 mod q</p>
-<p>因此，s1*k mod q = (H(m1) +xr) mod q</p>
-<p>s2*k mod q = (H(m2)+ xr) mod q</p>
-<p>k(s1 - s2) = H(m1) - H(m2) mod q</p>
-<p>此时就可以解出k了，进一步求出私钥k。</p>
-
-          
-        
+        <h2 id="循环移位"><a href="#循环移位" class="headerlink" title="循环移位"></a>循环移位</h2><p>&lt; !–more–&gt;</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">from</span> Crypto.Util.number <span class="keyword">import</span> bytes_to_long</span><br><span class="line"><span class="keyword">from</span> secret <span class="keyword">import</span> ENCRPYTION_KEY</span><br><span class="line"><span class="keyword">assert</span> len(ENCRPYTION_KEY)==<span class="number">16</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">circle</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></span><br><span class="line">        self.iv=bytes_to_long(os.urandom(<span class="number">4</span>))</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">LFSR</span><span class="params">(self)</span>:</span></span><br><span class="line">        self.iv= self.iv &gt;&gt; <span class="number">1</span> | (self.iv &amp; <span class="number">1</span>) &lt;&lt; <span class="number">31</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">getbyte</span><span class="params">(self)</span>:</span></span><br><span class="line">        x=self.iv</span><br><span class="line">        x ^= x &gt;&gt; <span class="number">16</span></span><br><span class="line">        x ^= x &gt;&gt; <span class="number">8</span></span><br><span class="line">        <span class="keyword">return</span> (x &amp; <span class="number">255</span>)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">nextbyte</span><span class="params">(self)</span>:</span></span><br><span class="line">        byte=self.getbyte()</span><br><span class="line">        self.LFSR()</span><br><span class="line">        <span class="keyword">return</span> byte</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">enc_key</span><span class="params">()</span>:</span></span><br><span class="line">    p=circle()</span><br><span class="line">    cipher=<span class="string">''</span></span><br><span class="line">    <span class="keyword">for</span> s <span class="keyword">in</span> ENCRPYTION_KEY:</span><br><span class="line">        cipher += chr(ord(s) ^ p.nextbyte())</span><br><span class="line">    <span class="keyword">with</span> open(<span class="string">'info'</span>,<span class="string">'w'</span>) <span class="keyword">as</span> f:</span><br><span class="line">        f.write(cipher.encode(<span class="string">"hex"</span>))</span><br></pre></td></tr></table></figure>
+<p>这段代码的意思是：</p>
+<p>设32位数，4个字节</p>
+<p>每个字节分别是x1,x2,x3,x4 </p>
+<p>返回值是x4 = x1 ^ x2 ^ x3 ^ x4</p>
+<p>循环移位之后异或的组合并不变,所以就变成了8位的密钥。</p>
+<p>256位变成32位，直接爆破得到结果。</p>
+<p>解密算法：</p>
+<figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">cipher=<span class="keyword">open</span>(<span class="string">"info"</span>,<span class="string">"r"</span>).<span class="keyword">read</span>().<span class="keyword">decode</span>(<span class="string">"hex"</span>)</span><br><span class="line"><span class="keyword">for</span> k <span class="keyword">in</span> <span class="keyword">range</span>(256):</span><br><span class="line">    kk=k</span><br><span class="line">    <span class="keyword">m</span>=''</span><br><span class="line">    <span class="keyword">for</span> s <span class="keyword">in</span> cipher:</span><br><span class="line">        <span class="keyword">m</span> += chr(ord(s) ^ kk)</span><br><span class="line">        kk = kk &gt;&gt; 1 | (kk &amp; 1) &lt;&lt; 7</span><br><span class="line">    <span class="keyword">print</span> <span class="built_in">m</span></span><br></pre></td></tr></table></figure>
       
     </div>
 
 	<div>
       
+        
+<div style="text-align:center;color: #ccc;font-size:14px;">------ 本文结束 ------</div>
+
+      
     </div>
 	
     <div>
       
+        
+      
     </div>
 
     <div>
+      
+        
+
       
     </div>
 
     <footer class="post-footer">
       
-
+        <div class="post-tags">
+          
+            <a href="/tags/crypto/" rel="tag">#crypto</a>
+          
+        </div>
       
 
       
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/10/06/dsa签名/" class="post-nav-title-link" rel="prev" title="DSA签名">
+                <i class="fa fa-chevron-left"></i> DSA签名 
+              </a>
+            
+          </div>
+		  
+		  <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
       
-        <div class="post-eof"></div>
+
+      
       
     </footer>
   </article>
 
 
-    
-  </section>
 
-  
-  <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right"></i></a>
-  </nav>
-
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -366,6 +384,10 @@
 
 
           
+  <div class="comments" id="comments">
+    
+  </div>
+
 
         </div>
         
@@ -385,8 +407,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel  sidebar-panel-active ">
+      <section class="site-overview sidebar-panel ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.gif"
@@ -429,6 +460,17 @@
 
       </section>
 
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#循环移位"><span class="nav-number">1.</span> <span class="nav-text">循环移位</span></a></li></ol></div>
+            
+          </div>
+        </section>
       
 
     </div>
@@ -537,6 +579,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
 
   
 
