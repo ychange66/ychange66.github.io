@@ -90,19 +90,19 @@
 <meta property="og:site_name" content="ychange66&#39;s Blog">
 <meta property="og:description" content="NDK开发练习完成MainActivity中的onCreate和replaceClassloader两个java函数的jni等价实现。">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="c:/Users/ychange/Desktop/2w4月题目/pic/setContentView.png">
-<meta property="og:image" content="c:/Users/ychange/Desktop/2w4月题目/pic/java_setFiled.png">
-<meta property="og:image" content="c:/Users/ychange/Desktop/2w4月题目/pic/decalred_mathod_java.png">
+<meta property="og:image" content="http://yoursite.com/images/setContentView.png">
+<meta property="og:image" content="http://yoursite.com/images/java_setFiled.png">
+<meta property="og:image" content="http://yoursite.com/images/decalred_mathod_java.png">
 <meta property="og:image" content="c:/Users/ychange/Desktop/2w4月题目/pic/declaredMethod.png">
-<meta property="og:image" content="c:/Users/ychange/Desktop/2w4月题目/pic/函数签名.png">
-<meta property="og:image" content="c:/Users/ychange/Desktop/2w4月题目/pic/类型转换.png">
-<meta property="og:image" content="c:/Users/ychange/Desktop/2w4月题目/pic/静态注册格式.png">
-<meta property="og:image" content="c:/Users/ychange/Desktop/2w4月题目/pic/动态注册格式.png">
-<meta property="og:updated_time" content="2020-05-11T15:36:38.425Z">
+<meta property="og:image" content="http://yoursite.com/images/函数签名.png">
+<meta property="og:image" content="http://yoursite.com/images/类型转换.png">
+<meta property="og:image" content="http://yoursite.com/images/静态注册格式.png">
+<meta property="og:image" content="http://yoursite.com/images/动态注册格式.png">
+<meta property="og:updated_time" content="2020-05-11T15:44:20.099Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="NDK开发练习">
 <meta name="twitter:description" content="NDK开发练习完成MainActivity中的onCreate和replaceClassloader两个java函数的jni等价实现。">
-<meta name="twitter:image" content="c:/Users/ychange/Desktop/2w4月题目/pic/setContentView.png">
+<meta name="twitter:image" content="http://yoursite.com/images/setContentView.png">
 
 
 
@@ -314,25 +314,25 @@
 </li>
 </ol>
 <p>jni翻译过程：R.layout.activity_main实际是一个int值，要去“com/kanxue/loaddex/R$layout”下找到activity_main这一个field，然后再执行setContentView方法。</p>
-<p><img src="C:\Users\ychange\Desktop\2w4月题目\pic\setContentView.png" alt="setContentView"></p>
+<p><img src="/images/setContentView.png" alt="setContentView"></p>
 <ol start="2">
 <li>mApplication 和appContext是MainActivity的两个属性。执行getApplication 以及getApplicationContext方法，并获取到两个对象的值之后，应该再将其赋值给mApplication 和appContext这两个MainActivity的属性。也就是setStaticField方法的使用。</li>
 </ol>
-<p><img src="C:\Users\ychange\Desktop\2w4月题目\pic\java_setFiled.png" alt=""></p>
+<p><img src="/images/java_setFiled.png" alt="java_setFiled"></p>
 <h3 id="replaceClassloader方法"><a href="#replaceClassloader方法" class="headerlink" title="replaceClassloader方法"></a>replaceClassloader方法</h3><ol>
 <li><p>java方法中有时候会省略掉一些参数不使用，但是在jni中必须严格按照函数签名传入参数。</p>
-<p><img src="C:\Users\ychange\Desktop\2w4月题目\pic\decalred_mathod_java.png" alt="decalred_mathod_java"></p>
+<p><img src="/images/decalred_mathod_java.png" alt="decalred_mathod_java"></p>
 </li>
 </ol>
 <p><img src="C:\Users\ychange\Desktop\2w4月题目\pic\declaredMethod.png" alt=""></p>
 <p>​    对应的jni方法实现。</p>
-<p><img src="C:\Users\ychange\Desktop\2w4月题目\pic\函数签名.png" alt="函数签名"></p>
+<p><img src="/images/函数签名.png" alt="函数签名"></p>
 <ol start="2">
 <li>老师在直播答疑中提到对于java的反射可以通过直接翻译的方式（代码很长），也可以通过观察java反射调用方法的逻辑，利用jni对这些方法的逻辑进行实现。我在实现的过程当中，后一半使用了第二种方式。</li>
 </ol>
 <ol start="3">
 <li><p>类型转换问题。</p>
-<p><img src="C:\Users\ychange\Desktop\2w4月题目\pic\类型转换.png" alt="类型转换"></p>
+<p><img src="/images/类型转换.png" alt="类型转换"></p>
 <p>对应的jni代码逻辑：</p>
 <p>（1）找到“java/lang/reflect/Field”类。</p>
 <p>（2）通过执行get方法获取mPackagesObj对象</p>
@@ -341,14 +341,14 @@
 </li>
 </ol>
 <h2 id="静态转动态注册"><a href="#静态转动态注册" class="headerlink" title="静态转动态注册"></a>静态转动态注册</h2><p>一开始使用静态注册的方法。静态注册函数的格式如下图：</p>
-<p><img src="C:\Users\ychange\Desktop\2w4月题目\pic\静态注册格式.png" alt="静态注册格式"></p>
+<p><img src="/images/静态注册格式.png" alt="静态注册格式"></p>
 <p>然后后面改成动态注册的方式，</p>
 <p>步骤：</p>
 <p>（1）在JNI_Onload当中写，JniNativeMethod的映射表。映射表中的内容，每一条对应3个元素：1.java方法 2. java方法的函数签名  3. Native层对应的方法首地址，一般是（函数指针）函数名，比如（void*）onCreate。</p>
 <p>（2）FindClass，注意（1）中的JniNativeMethod是以Class为单位的，如果Native函数在不同的Class当中，那就要创建多个JniNativeMethod的映射表。</p>
 <p>（3）获取到jclass之后，registerNatives就可以了。</p>
 <p>具体实现如下图所示。</p>
-<p><img src="C:\Users\ychange\Desktop\2w4月题目\pic\动态注册格式.png" alt="动态注册格式"></p>
+<p><img src="/images/动态注册格式.png" alt="动态注册格式"></p>
 
       
     </div>
