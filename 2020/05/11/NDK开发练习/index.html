@@ -66,7 +66,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="crypto," />
+  <meta name="keywords" content="Android," />
 
 
 
@@ -82,18 +82,27 @@
 
 
 
-<meta name="description" content="循环移位">
-<meta name="keywords" content="crypto">
+<meta name="description" content="NDK开发练习完成MainActivity中的onCreate和replaceClassloader两个java函数的jni等价实现。">
+<meta name="keywords" content="Android">
 <meta property="og:type" content="article">
-<meta property="og:title" content="LFSR trick">
-<meta property="og:url" content="http://yoursite.com/2019/10/06/密码学积累/index.html">
+<meta property="og:title" content="NDK开发练习">
+<meta property="og:url" content="http://yoursite.com/2020/05/11/NDK开发练习/index.html">
 <meta property="og:site_name" content="ychange66&#39;s Blog">
-<meta property="og:description" content="循环移位">
+<meta property="og:description" content="NDK开发练习完成MainActivity中的onCreate和replaceClassloader两个java函数的jni等价实现。">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2020-05-06T07:31:07.475Z">
+<meta property="og:image" content="c:/Users/ychange/Desktop/2w4月题目/pic/setContentView.png">
+<meta property="og:image" content="c:/Users/ychange/Desktop/2w4月题目/pic/java_setFiled.png">
+<meta property="og:image" content="c:/Users/ychange/Desktop/2w4月题目/pic/decalred_mathod_java.png">
+<meta property="og:image" content="c:/Users/ychange/Desktop/2w4月题目/pic/declaredMethod.png">
+<meta property="og:image" content="c:/Users/ychange/Desktop/2w4月题目/pic/函数签名.png">
+<meta property="og:image" content="c:/Users/ychange/Desktop/2w4月题目/pic/类型转换.png">
+<meta property="og:image" content="c:/Users/ychange/Desktop/2w4月题目/pic/静态注册格式.png">
+<meta property="og:image" content="c:/Users/ychange/Desktop/2w4月题目/pic/动态注册格式.png">
+<meta property="og:updated_time" content="2020-05-11T15:36:38.425Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="LFSR trick">
-<meta name="twitter:description" content="循环移位">
+<meta name="twitter:title" content="NDK开发练习">
+<meta name="twitter:description" content="NDK开发练习完成MainActivity中的onCreate和replaceClassloader两个java函数的jni等价实现。">
+<meta name="twitter:image" content="c:/Users/ychange/Desktop/2w4月题目/pic/setContentView.png">
 
 
 
@@ -111,7 +120,7 @@
   };
 </script>
 
-  <title> LFSR trick | ychange66's Blog  -  </title>
+  <title> NDK开发练习 | ychange66's Blog  -  </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="">
@@ -237,7 +246,7 @@
             
             
               
-                LFSR trick
+                NDK开发练习
               
             
           </h1>
@@ -249,8 +258,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">Posted on</span>
-            <time itemprop="dateCreated" datetime="2019-10-06T18:25:20+08:00" content="2019-10-06">
-              2019-10-06
+            <time itemprop="dateCreated" datetime="2020-05-11T23:32:25+08:00" content="2020-05-11">
+              2020-05-11
             </time>
           </span>
 
@@ -263,8 +272,8 @@
               <span class="post-meta-item-text">In</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Crypto/" itemprop="url" rel="index">
-                    <span itemprop="name">Crypto</span>
+                  <a href="/categories/Android/" itemprop="url" rel="index">
+                    <span itemprop="name">Android</span>
                   </a>
                 </span>
 
@@ -296,16 +305,51 @@
       
 
       
-        <h2 id="循环移位"><a href="#循环移位" class="headerlink" title="循环移位"></a>循环移位</h2><a id="more"></a>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">from</span> Crypto.Util.number <span class="keyword">import</span> bytes_to_long</span><br><span class="line"><span class="keyword">from</span> secret <span class="keyword">import</span> ENCRPYTION_KEY</span><br><span class="line"><span class="keyword">assert</span> len(ENCRPYTION_KEY)==<span class="number">16</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">circle</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></span><br><span class="line">        self.iv=bytes_to_long(os.urandom(<span class="number">4</span>))</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">LFSR</span><span class="params">(self)</span>:</span></span><br><span class="line">        self.iv= self.iv &gt;&gt; <span class="number">1</span> | (self.iv &amp; <span class="number">1</span>) &lt;&lt; <span class="number">31</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">getbyte</span><span class="params">(self)</span>:</span></span><br><span class="line">        x=self.iv</span><br><span class="line">        x ^= x &gt;&gt; <span class="number">16</span></span><br><span class="line">        x ^= x &gt;&gt; <span class="number">8</span></span><br><span class="line">        <span class="keyword">return</span> (x &amp; <span class="number">255</span>)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">nextbyte</span><span class="params">(self)</span>:</span></span><br><span class="line">        byte=self.getbyte()</span><br><span class="line">        self.LFSR()</span><br><span class="line">        <span class="keyword">return</span> byte</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">enc_key</span><span class="params">()</span>:</span></span><br><span class="line">    p=circle()</span><br><span class="line">    cipher=<span class="string">''</span></span><br><span class="line">    <span class="keyword">for</span> s <span class="keyword">in</span> ENCRPYTION_KEY:</span><br><span class="line">        cipher += chr(ord(s) ^ p.nextbyte())</span><br><span class="line">    <span class="keyword">with</span> open(<span class="string">'info'</span>,<span class="string">'w'</span>) <span class="keyword">as</span> f:</span><br><span class="line">        f.write(cipher.encode(<span class="string">"hex"</span>))</span><br></pre></td></tr></table></figure>
-<p>这段代码的意思是：</p>
-<p>设32位数，4个字节</p>
-<p>每个字节分别是x1,x2,x3,x4 </p>
-<p>返回值是x4 = x1 ^ x2 ^ x3 ^ x4</p>
-<p>循环移位之后异或的组合并不变,所以就变成了8位的密钥。</p>
-<p>256位变成32位，直接爆破得到结果。</p>
-<p>解密算法：</p>
-<figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">cipher=<span class="keyword">open</span>(<span class="string">"info"</span>,<span class="string">"r"</span>).<span class="keyword">read</span>().<span class="keyword">decode</span>(<span class="string">"hex"</span>)</span><br><span class="line"><span class="keyword">for</span> k <span class="keyword">in</span> <span class="keyword">range</span>(256):</span><br><span class="line">    kk=k</span><br><span class="line">    <span class="keyword">m</span>=''</span><br><span class="line">    <span class="keyword">for</span> s <span class="keyword">in</span> cipher:</span><br><span class="line">        <span class="keyword">m</span> += chr(ord(s) ^ kk)</span><br><span class="line">        kk = kk &gt;&gt; 1 | (kk &amp; 1) &lt;&lt; 7</span><br><span class="line">    <span class="keyword">print</span> <span class="built_in">m</span></span><br></pre></td></tr></table></figure>
+        <h2 id="NDK开发练习"><a href="#NDK开发练习" class="headerlink" title="NDK开发练习"></a>NDK开发练习</h2><p>完成MainActivity中的onCreate和replaceClassloader两个java函数的jni等价实现。</p>
+<a id="more"></a>
+<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><p>在代码实现的过程当中，遇到了好几个问题不知道该怎么解决，终于通过问老师，以及听直播课的答疑，顺利写完。（这里只对几个自己遇到的问题进行记录。）菜鸡一步步来，方便以后查阅。</p>
+<p>首先静态注册来实现这两个方法。</p>
+<h3 id="onCreate方法"><a href="#onCreate方法" class="headerlink" title="onCreate方法"></a>onCreate方法</h3><ol>
+<li><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">setContentView(R.layout.activity_main);</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>jni翻译过程：R.layout.activity_main实际是一个int值，要去“com/kanxue/loaddex/R$layout”下找到activity_main这一个field，然后再执行setContentView方法。</p>
+<p><img src="C:\Users\ychange\Desktop\2w4月题目\pic\setContentView.png" alt="setContentView"></p>
+<ol start="2">
+<li>mApplication 和appContext是MainActivity的两个属性。执行getApplication 以及getApplicationContext方法，并获取到两个对象的值之后，应该再将其赋值给mApplication 和appContext这两个MainActivity的属性。也就是setStaticField方法的使用。</li>
+</ol>
+<p><img src="C:\Users\ychange\Desktop\2w4月题目\pic\java_setFiled.png" alt=""></p>
+<h3 id="replaceClassloader方法"><a href="#replaceClassloader方法" class="headerlink" title="replaceClassloader方法"></a>replaceClassloader方法</h3><ol>
+<li><p>java方法中有时候会省略掉一些参数不使用，但是在jni中必须严格按照函数签名传入参数。</p>
+<p><img src="C:\Users\ychange\Desktop\2w4月题目\pic\decalred_mathod_java.png" alt="decalred_mathod_java"></p>
+</li>
+</ol>
+<p><img src="C:\Users\ychange\Desktop\2w4月题目\pic\declaredMethod.png" alt=""></p>
+<p>​    对应的jni方法实现。</p>
+<p><img src="C:\Users\ychange\Desktop\2w4月题目\pic\函数签名.png" alt="函数签名"></p>
+<ol start="2">
+<li>老师在直播答疑中提到对于java的反射可以通过直接翻译的方式（代码很长），也可以通过观察java反射调用方法的逻辑，利用jni对这些方法的逻辑进行实现。我在实现的过程当中，后一半使用了第二种方式。</li>
+</ol>
+<ol start="3">
+<li><p>类型转换问题。</p>
+<p><img src="C:\Users\ychange\Desktop\2w4月题目\pic\类型转换.png" alt="类型转换"></p>
+<p>对应的jni代码逻辑：</p>
+<p>（1）找到“java/lang/reflect/Field”类。</p>
+<p>（2）通过执行get方法获取mPackagesObj对象</p>
+<p>（3）找到“android/util/ArrayMap”类。</p>
+<p>（4）找到“android/util/ArrayMap”下的get方法ID，然后传参PackageName，然后执行获得wr对象。</p>
+</li>
+</ol>
+<h2 id="静态转动态注册"><a href="#静态转动态注册" class="headerlink" title="静态转动态注册"></a>静态转动态注册</h2><p>一开始使用静态注册的方法。静态注册函数的格式如下图：</p>
+<p><img src="C:\Users\ychange\Desktop\2w4月题目\pic\静态注册格式.png" alt="静态注册格式"></p>
+<p>然后后面改成动态注册的方式，</p>
+<p>步骤：</p>
+<p>（1）在JNI_Onload当中写，JniNativeMethod的映射表。映射表中的内容，每一条对应3个元素：1.java方法 2. java方法的函数签名  3. Native层对应的方法首地址，一般是（函数指针）函数名，比如（void*）onCreate。</p>
+<p>（2）FindClass，注意（1）中的JniNativeMethod是以Class为单位的，如果Native函数在不同的Class当中，那就要创建多个JniNativeMethod的映射表。</p>
+<p>（3）获取到jclass之后，registerNatives就可以了。</p>
+<p>具体实现如下图所示。</p>
+<p><img src="C:\Users\ychange\Desktop\2w4月题目\pic\动态注册格式.png" alt="动态注册格式"></p>
+
       
     </div>
 
@@ -334,7 +378,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/crypto/" rel="tag">#crypto</a>
+            <a href="/tags/Android/" rel="tag">#Android</a>
           
         </div>
       
@@ -343,13 +387,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/10/06/dsa签名/" class="post-nav-title-link" rel="prev" title="DSA签名">
-                <i class="fa fa-chevron-left"></i> DSA签名 
-              </a>
-            
           </div>
 		  
 		  <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/01/31/FlowDroid的环境搭建/" class="post-nav-title-link" rel="next" title="FlowDroid的环境搭建">
+                FlowDroid的环境搭建  <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -463,7 +507,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#循环移位"><span class="nav-number">1.</span> <span class="nav-text">循环移位</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#NDK开发练习"><span class="nav-number">1.</span> <span class="nav-text">NDK开发练习</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#代码实现"><span class="nav-number">2.</span> <span class="nav-text">代码实现</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#onCreate方法"><span class="nav-number">2.1.</span> <span class="nav-text">onCreate方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#replaceClassloader方法"><span class="nav-number">2.2.</span> <span class="nav-text">replaceClassloader方法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#静态转动态注册"><span class="nav-number">3.</span> <span class="nav-text">静态转动态注册</span></a></li></ol></div>
             
           </div>
         </section>
