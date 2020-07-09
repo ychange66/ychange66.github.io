@@ -82,20 +82,20 @@
 
 
 
-<meta name="description" content="不安全的授权 不安全的应用程序权限设置（Android系统将权限分成了正常权限和敏感权限）  冗余的权限设置  存在不安全的直接引用漏洞(IDOR)">
+<meta name="description" content="不安全的授权 不安全的应用程序权限设置 （Android系统将权限分成了正常权限和敏感权限）  冗余的权限设置  存在不安全的直接引用漏洞(IDOR)">
 <meta name="keywords" content="Android">
 <meta property="og:type" content="article">
 <meta property="og:title" content="App测试：不安全的授权">
 <meta property="og:url" content="http://yoursite.com/2020/07/09/不安全的授权/index.html">
 <meta property="og:site_name" content="ychange66&#39;s Blog">
-<meta property="og:description" content="不安全的授权 不安全的应用程序权限设置（Android系统将权限分成了正常权限和敏感权限）  冗余的权限设置  存在不安全的直接引用漏洞(IDOR)">
+<meta property="og:description" content="不安全的授权 不安全的应用程序权限设置 （Android系统将权限分成了正常权限和敏感权限）  冗余的权限设置  存在不安全的直接引用漏洞(IDOR)">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="c:/Users/ychange/Desktop/IDOR漏洞.png">
-<meta property="og:updated_time" content="2020-07-09T03:52:55.026Z">
+<meta property="og:image" content="http://yoursite.com/images/IDOR漏洞.png">
+<meta property="og:updated_time" content="2020-07-09T04:00:18.119Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="App测试：不安全的授权">
-<meta name="twitter:description" content="不安全的授权 不安全的应用程序权限设置（Android系统将权限分成了正常权限和敏感权限）  冗余的权限设置  存在不安全的直接引用漏洞(IDOR)">
-<meta name="twitter:image" content="c:/Users/ychange/Desktop/IDOR漏洞.png">
+<meta name="twitter:description" content="不安全的授权 不安全的应用程序权限设置 （Android系统将权限分成了正常权限和敏感权限）  冗余的权限设置  存在不安全的直接引用漏洞(IDOR)">
+<meta name="twitter:image" content="http://yoursite.com/images/IDOR漏洞.png">
 
 
 
@@ -299,7 +299,7 @@
 
       
         <h2 id="不安全的授权"><a href="#不安全的授权" class="headerlink" title="不安全的授权"></a>不安全的授权</h2><ol>
-<li><p>不安全的应用程序权限设置<br>（Android系统将权限分成了正常权限和敏感权限）</p>
+<li><p>不安全的应用程序权限设置<br> （Android系统将权限分成了正常权限和敏感权限）</p>
 </li>
 <li><p>冗余的权限设置</p>
 </li>
@@ -315,7 +315,7 @@
 <p>当从客户端向服务器上传一些图片或者其他隐私信息时，web应用端可能会为这个用户上传的文件分配一个公开的直接引用。</p>
 <p>如果攻击者直接访问到了这个公开引用，这种行为就叫做“强制浏览”，如下图所示。</p>
 <p>web应用程序未将文件权限与对应用户进行映射，导致任何用户都可以下载到其他人的隐私文件。</p>
-<p><img src="C:\Users\ychange\Desktop\IDOR漏洞.png" alt="IDOR漏洞"></p>
+<p><img src="/images/IDOR漏洞.png" alt="IDOR漏洞"></p>
 <p>当碰到其他的情况比如UUID时，就没有办法猜到其他用户的UUID了。但是也有可能从其他地方泄露。比如从服务端response的JS代码中可以找到。</p>
 <p><strong>Reference:</strong></p>
 <p><a href="https://v.qq.com/x/page/r0861re8p8m.html" target="_blank" rel="noopener">https://v.qq.com/x/page/r0861re8p8m.html</a></p>
