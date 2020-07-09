@@ -66,7 +66,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="CTF Crypto && Android" />
+  <meta name="keywords" content="Android," />
 
 
 
@@ -82,13 +82,20 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="ychange66&#39;s Blog">
-<meta property="og:url" content="http://yoursite.com/page/3/index.html">
+<meta name="description" content="不安全的授权 不安全的应用程序权限设置（Android系统将权限分成了正常权限和敏感权限）  冗余的权限设置  存在不安全的直接引用漏洞(IDOR)">
+<meta name="keywords" content="Android">
+<meta property="og:type" content="article">
+<meta property="og:title" content="App测试：不安全的授权">
+<meta property="og:url" content="http://yoursite.com/2020/07/09/不安全的授权/index.html">
 <meta property="og:site_name" content="ychange66&#39;s Blog">
+<meta property="og:description" content="不安全的授权 不安全的应用程序权限设置（Android系统将权限分成了正常权限和敏感权限）  冗余的权限设置  存在不安全的直接引用漏洞(IDOR)">
 <meta property="og:locale" content="default">
+<meta property="og:image" content="c:/Users/ychange/Desktop/IDOR漏洞.png">
+<meta property="og:updated_time" content="2020-07-09T03:52:55.026Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="ychange66&#39;s Blog">
+<meta name="twitter:title" content="App测试：不安全的授权">
+<meta name="twitter:description" content="不安全的授权 不安全的应用程序权限设置（Android系统将权限分成了正常权限和敏感权限）  冗余的权限设置  存在不安全的直接引用漏洞(IDOR)">
+<meta name="twitter:image" content="c:/Users/ychange/Desktop/IDOR漏洞.png">
 
 
 
@@ -106,7 +113,7 @@
   };
 </script>
 
-  <title> ychange66's Blog  -  </title>
+  <title> App测试：不安全的授权 | ychange66's Blog  -  </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="">
@@ -133,9 +140,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left 
-   page-home 
- ">
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -212,9 +217,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
   
@@ -234,10 +239,7 @@
             
             
               
-                
-                <a class="post-title-link" href="/2020/01/31/FlowDroid的环境搭建/" itemprop="url">
-                  FlowDroid的环境搭建
-                </a>
+                App测试：不安全的授权
               
             
           </h1>
@@ -249,8 +251,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">Posted on</span>
-            <time itemprop="dateCreated" datetime="2020-01-31T18:25:20+08:00" content="2020-01-31">
-              2020-01-31
+            <time itemprop="dateCreated" datetime="2020-07-09T18:25:20+08:00" content="2020-07-09">
+              2020-07-09
             </time>
           </span>
 
@@ -263,8 +265,8 @@
               <span class="post-meta-item-text">In</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Android/" itemprop="url" rel="index">
-                    <span itemprop="name">Android</span>
+                  <a href="/categories/App测试/" itemprop="url" rel="index">
+                    <span itemprop="name">App测试</span>
                   </a>
                 </span>
 
@@ -296,51 +298,88 @@
       
 
       
-        
-          <h1 id="FlowDroid的环境搭建"><a href="#FlowDroid的环境搭建" class="headerlink" title="FlowDroid的环境搭建"></a>FlowDroid的环境搭建</h1><p>参考内容：<a href="https://github.com/secure-software-engineering/soot-infoflow-android/wiki" target="_blank" rel="noopener">https://github.com/secure-software-engineering/soot-infoflow-android/wiki</a></p>
-<p>使用flowdroid有两种办法，Obtaining the nightly builds和Building FlowDroid From Source。</p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2020/01/31/FlowDroid的环境搭建/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-        
+        <h2 id="不安全的授权"><a href="#不安全的授权" class="headerlink" title="不安全的授权"></a>不安全的授权</h2><ol>
+<li><p>不安全的应用程序权限设置<br>（Android系统将权限分成了正常权限和敏感权限）</p>
+</li>
+<li><p>冗余的权限设置</p>
+</li>
+<li><p>存在不安全的直接引用漏洞(IDOR)</p>
+<a id="more"></a>
+</li>
+</ol>
+<p>App测试：<br>这个问题测试的时候需要app本身，而且需要Burp截断，截断后修改主体信息，看是否修改成功。</p>
+<h2 id="IDOR漏洞"><a href="#IDOR漏洞" class="headerlink" title="IDOR漏洞"></a>IDOR漏洞</h2><p>通过更改web应用的URL参数，比如：/view_user_info?user_id = 20<br>直接引用漏洞(IDOR)就是user_id的20变成21，结果却获取到了其他的不应该看到的信息。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="php"><span class="meta">&lt;?php</span></span></span><br><span class="line"><span class="php">    $user_id = $_GET[<span class="string">'uid'</span>];</span></span><br><span class="line"><span class="php">    $user_info = get_user_info($user_id);</span></span><br><span class="line"><span class="php">    ···</span></span><br><span class="line"><span class="php"><span class="comment"># 从安全性上，这段代码逻辑肯定有问题。为了解决这个问题，</span></span></span><br><span class="line"><span class="php"></span></span><br><span class="line"><span class="php"><span class="comment"># 建议修改成：</span></span></span><br><span class="line"><span class="php"><span class="meta">&lt;?php</span></span></span><br><span class="line"><span class="php">    $user_id = $_SESSION[<span class="string">'uid'</span>];</span></span><br><span class="line"><span class="php">    $user_info = get_user_info($user_id);</span></span><br><span class="line"><span class="php">    ···</span></span><br><span class="line"><span class="php"><span class="comment"># 可以使用会话的cookie方式，在后端验证用户ID，而不是盲目地接受客户端用户任何地发送请求。</span></span></span><br></pre></td></tr></table></figure>
+<p>而在一些无服务器架构中，客户端输入的用户ID，服务器需要对其进行某种形式的验证，以防止恶意的客户端数据篡改。这种验证形式如JWT签名或叫JSON Web Token等。</p>
+<p>IDOR可以用于在未经授权的情况下，去更改其他用户的账户资料。</p>
+<p>当从客户端向服务器上传一些图片或者其他隐私信息时，web应用端可能会为这个用户上传的文件分配一个公开的直接引用。</p>
+<p>如果攻击者直接访问到了这个公开引用，这种行为就叫做“强制浏览”，如下图所示。</p>
+<p>web应用程序未将文件权限与对应用户进行映射，导致任何用户都可以下载到其他人的隐私文件。</p>
+<p><img src="C:\Users\ychange\Desktop\IDOR漏洞.png" alt="IDOR漏洞"></p>
+<p>当碰到其他的情况比如UUID时，就没有办法猜到其他用户的UUID了。但是也有可能从其他地方泄露。比如从服务端response的JS代码中可以找到。</p>
+<p><strong>Reference:</strong></p>
+<p><a href="https://v.qq.com/x/page/r0861re8p8m.html" target="_blank" rel="noopener">https://v.qq.com/x/page/r0861re8p8m.html</a></p>
+
       
     </div>
 
 	<div>
       
+        
+<div style="text-align:center;color: #ccc;font-size:14px;">------ 本文结束 ------</div>
+
+      
     </div>
 	
     <div>
       
+        
+      
     </div>
 
     <div>
+      
+        
+
       
     </div>
 
     <footer class="post-footer">
       
-
+        <div class="post-tags">
+          
+            <a href="/tags/Android/" rel="tag">#Android</a>
+          
+        </div>
       
 
       
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+          </div>
+		  
+		  <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/05/11/NDK开发练习/" class="post-nav-title-link" rel="next" title="NDK开发练习">
+                NDK开发练习  <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
       
-        <div class="post-eof"></div>
+
+      
       
     </footer>
   </article>
 
 
-    
-  </section>
 
-  
-  <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right"></i></a>
-  </nav>
-
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -348,6 +387,10 @@
 
 
           
+  <div class="comments" id="comments">
+    
+  </div>
+
 
         </div>
         
@@ -367,8 +410,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel  sidebar-panel-active ">
+      <section class="site-overview sidebar-panel ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/timg.jpg"
@@ -418,6 +470,17 @@
 
       </section>
 
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#不安全的授权"><span class="nav-number">1.</span> <span class="nav-text">不安全的授权</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#IDOR漏洞"><span class="nav-number">2.</span> <span class="nav-text">IDOR漏洞</span></a></li></ol></div>
+            
+          </div>
+        </section>
       
 
     </div>
@@ -526,6 +589,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
 
   
 
