@@ -66,7 +66,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Android," />
+  <meta name="keywords" content="数据结构," />
 
 
 
@@ -82,23 +82,18 @@
 
 
 
-<meta name="description" content="FlowDroid的环境搭建参考内容：https://github.com/secure-software-engineering/soot-infoflow-android/wiki 使用flowdroid有两种办法，Obtaining the nightly builds和Building FlowDroid From Source。">
-<meta name="keywords" content="Android">
+<meta name="description" content="动态规划之剪绳子动态规划求解问题的四个特征：①求一个问题的最优解；  ②整体的问题的最优解是依赖于各个子问题的最优解；  ③小问题之间还有相互重叠的更小的子问题；  ④从上往下分析问题，从下往上求解问题；">
+<meta name="keywords" content="数据结构">
 <meta property="og:type" content="article">
-<meta property="og:title" content="FlowDroid的环境搭建">
-<meta property="og:url" content="http://yoursite.com/2020/01/31/FlowDroid的环境搭建/index.html">
+<meta property="og:title" content="剪绳子">
+<meta property="og:url" content="http://yoursite.com/2019/10/06/动态规划之剪绳子/index.html">
 <meta property="og:site_name" content="ychange66&#39;s Blog">
-<meta property="og:description" content="FlowDroid的环境搭建参考内容：https://github.com/secure-software-engineering/soot-infoflow-android/wiki 使用flowdroid有两种办法，Obtaining the nightly builds和Building FlowDroid From Source。">
+<meta property="og:description" content="动态规划之剪绳子动态规划求解问题的四个特征：①求一个问题的最优解；  ②整体的问题的最优解是依赖于各个子问题的最优解；  ③小问题之间还有相互重叠的更小的子问题；  ④从上往下分析问题，从下往上求解问题；">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="http://yoursite.com/images/release_error.JPG">
-<meta property="og:image" content="http://yoursite.com/images/运行程序.JPG">
-<meta property="og:image" content="http://yoursite.com/images/运行结果.JPG">
-<meta property="og:image" content="http://yoursite.com/images/分析apk.JPG">
-<meta property="og:updated_time" content="2020-05-06T07:30:45.687Z">
+<meta property="og:updated_time" content="2020-07-10T08:51:54.792Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="FlowDroid的环境搭建">
-<meta name="twitter:description" content="FlowDroid的环境搭建参考内容：https://github.com/secure-software-engineering/soot-infoflow-android/wiki 使用flowdroid有两种办法，Obtaining the nightly builds和Building FlowDroid From Source。">
-<meta name="twitter:image" content="http://yoursite.com/images/release_error.JPG">
+<meta name="twitter:title" content="剪绳子">
+<meta name="twitter:description" content="动态规划之剪绳子动态规划求解问题的四个特征：①求一个问题的最优解；  ②整体的问题的最优解是依赖于各个子问题的最优解；  ③小问题之间还有相互重叠的更小的子问题；  ④从上往下分析问题，从下往上求解问题；">
 
 
 
@@ -116,7 +111,7 @@
   };
 </script>
 
-  <title> FlowDroid的环境搭建 | ychange66's Blog  -  </title>
+  <title> 剪绳子 | ychange66's Blog  -  </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="">
@@ -242,7 +237,7 @@
             
             
               
-                FlowDroid的环境搭建
+                剪绳子
               
             
           </h1>
@@ -254,8 +249,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">Posted on</span>
-            <time itemprop="dateCreated" datetime="2020-01-31T18:25:20+08:00" content="2020-01-31">
-              2020-01-31
+            <time itemprop="dateCreated" datetime="2019-10-06T18:25:20+08:00" content="2019-10-06">
+              2019-10-06
             </time>
           </span>
 
@@ -268,8 +263,8 @@
               <span class="post-meta-item-text">In</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Android/" itemprop="url" rel="index">
-                    <span itemprop="name">Android</span>
+                  <a href="/categories/数据结构/" itemprop="url" rel="index">
+                    <span itemprop="name">数据结构</span>
                   </a>
                 </span>
 
@@ -301,22 +296,21 @@
       
 
       
-        <h1 id="FlowDroid的环境搭建"><a href="#FlowDroid的环境搭建" class="headerlink" title="FlowDroid的环境搭建"></a>FlowDroid的环境搭建</h1><p>参考内容：<a href="https://github.com/secure-software-engineering/soot-infoflow-android/wiki" target="_blank" rel="noopener">https://github.com/secure-software-engineering/soot-infoflow-android/wiki</a></p>
-<p>使用flowdroid有两种办法，Obtaining the nightly builds和Building FlowDroid From Source。</p>
-<a id="more"></a>
-<h2 id="Obtaining-the-nightly-builds"><a href="#Obtaining-the-nightly-builds" class="headerlink" title="Obtaining the nightly builds"></a>Obtaining the nightly builds</h2><p>就是使用打包好的jar包来直接调用，下面来尝试一下。</p>
-<p><img src="/images/release_error.JPG" alt="release_error"></p>
-<p>不知道该怎么解决这个问题，所以我们尝试第二种方法。</p>
-<h2 id="Building-FlowDroid-From-Source"><a href="#Building-FlowDroid-From-Source" class="headerlink" title="Building FlowDroid From Source"></a>Building FlowDroid From Source</h2><p>所以，不如干脆直接使用这种方法使用eclipse将五个项目引入。</p>
-<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">heros:</span>   <span class="string">https:</span><span class="comment">//github.com/Sable/heros.git</span></span><br><span class="line"><span class="string">jasmin:</span>   <span class="string">https:</span><span class="comment">//github.com/Sable/jasmin.git</span></span><br><span class="line"><span class="string">soot:</span>  <span class="string">https:</span><span class="comment">//github.com/Sable/soot.git</span></span><br><span class="line">soot-<span class="string">infoflow:</span>    <span class="string">https:</span><span class="comment">//github.com/secure-software-engineering/soot-infoflow.git</span></span><br><span class="line">soot-infoflow-<span class="string">android:</span>    <span class="string">https:</span><span class="comment">//github.com/secure-software-engineering/soot-infoflow-android.git</span></span><br></pre></td></tr></table></figure>
-<p>可参考下面链接的步骤一步一步引入</p>
-<p><a href="https://blog.csdn.net/wang8978/article/details/88241917" target="_blank" rel="noopener">https://blog.csdn.net/wang8978/article/details/88241917</a></p>
-<p>然后运行soot-infoflow-android项目中的soot.jimple.infoflow.android.TestApps.Test.java方法，运行时要设置参数。</p>
-<p><img src="/images/运行程序.JPG" alt="运行程序"></p>
-<p>运行结果如下图所示：</p>
-<p><img src="/images/运行结果.JPG" alt="运行结果"></p>
-<p>对应的apk程序片段是：</p>
-<p><img src="/images/分析apk.JPG" alt="分析apk"></p>
+        <h2 id="动态规划之剪绳子"><a href="#动态规划之剪绳子" class="headerlink" title="动态规划之剪绳子"></a>动态规划之剪绳子</h2><h3 id="动态规划求解问题的四个特征："><a href="#动态规划求解问题的四个特征：" class="headerlink" title="动态规划求解问题的四个特征："></a>动态规划求解问题的四个特征：</h3><pre><code>①求一个问题的最优解； 
+②整体的问题的最优解是依赖于各个子问题的最优解； 
+③小问题之间还有相互重叠的更小的子问题； 
+④从上往下分析问题，从下往上求解问题；
+</code></pre><a id="more"></a>
+<h3 id="题目描述："><a href="#题目描述：" class="headerlink" title="题目描述："></a>题目描述：</h3><figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">给你一根长度为n的绳子，请把绳子剪成整数长的m段（m、n都是整数，n&gt;<span class="number">1</span>并且m&gt;<span class="number">1</span>，m&lt;=n），每段绳子的长度记为k[<span class="number">1</span>],...,k[m]。请问k[<span class="number">1</span>]x...xk[m]可能的最大乘积是多少？例如，当绳子的长度是<span class="number">8</span>时，我们把它剪成长度分别为<span class="number">2</span>、<span class="number">3</span>、<span class="number">3</span>的三段，此时得到的最大乘积是<span class="number">18</span>。</span><br></pre></td></tr></table></figure>
+<figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -*- coding:utf-8 -*-</span></span><br><span class="line">class Solution:</span><br><span class="line">    def cutRope(self, <span class="built_in">number</span>):</span><br><span class="line">        <span class="comment"># write code here</span></span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">number</span> &lt;<span class="number">2</span>:</span><br><span class="line">            <span class="literal">return</span> <span class="number">0</span></span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">number</span> == <span class="number">2</span>:</span><br><span class="line">            <span class="literal">return</span> <span class="number">1</span></span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">number</span> == <span class="number">3</span>:</span><br><span class="line">            <span class="literal">return</span> <span class="number">2</span></span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">number</span> &gt; <span class="number">3</span>:</span><br><span class="line">        <span class="comment"># 把大问题转化成子问题。</span></span><br><span class="line">            ans = [<span class="number">0</span> <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>, <span class="built_in">number</span>+<span class="number">1</span>)]</span><br><span class="line">            <span class="comment"># 为什么用长度值呢？因为剪断后的乘积没有本身长啊！！！！所以如果绳子长度大于3的话，子问题（绳子长度为3时）就不用剪了。</span></span><br><span class="line">            ans[<span class="number">1</span>] = <span class="number">1</span></span><br><span class="line">            ans[<span class="number">2</span>] = <span class="number">2</span></span><br><span class="line">            ans[<span class="number">3</span>] = <span class="number">3</span></span><br><span class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">4</span>,<span class="built_in">number</span>+<span class="number">1</span>):</span><br><span class="line">                maxnum = <span class="number">0</span></span><br><span class="line">                <span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">1</span>,<span class="comment">i//2+1):</span></span><br><span class="line">                    maxnum = <span class="built_in">max</span>(ans[j]*ans[i-j],maxnum)</span><br><span class="line">                ans[i] = maxnum</span><br><span class="line">            <span class="literal">return</span> ans[<span class="built_in">number</span>]</span><br></pre></td></tr></table></figure>
+<h3 id="代码思路："><a href="#代码思路：" class="headerlink" title="代码思路："></a>代码思路：</h3><ol>
+<li><p>假设长度为8，我们把长度为7，以及更小的长度的最优解计算出来。然后长度为8时，从前面的结果中去挑。</p>
+</li>
+<li><p>长度为1，2，3时，剪开相乘的结果没有比不剪开时值更高，所以1，2，3就直接使用绳子长度。</p>
+</li>
+<li><p>动态规划问题就是将大问题化成子问题。</p>
+</li>
+</ol>
 
       
     </div>
@@ -346,7 +340,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Android/" rel="tag">#Android</a>
+            <a href="/tags/数据结构/" rel="tag">#数据结构</a>
           
         </div>
       
@@ -355,16 +349,16 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2020/05/11/NDK开发练习/" class="post-nav-title-link" rel="prev" title="NDK开发练习">
-                <i class="fa fa-chevron-left"></i> NDK开发练习 
+              <a href="/2019/10/06/dsa签名/" class="post-nav-title-link" rel="prev" title="DSA签名">
+                <i class="fa fa-chevron-left"></i> DSA签名 
               </a>
             
           </div>
 		  
 		  <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/10/06/dsa签名/" class="post-nav-title-link" rel="next" title="DSA签名">
-                DSA签名  <i class="fa fa-chevron-right"></i>
+              <a href="/2019/10/06/密码学积累/" class="post-nav-title-link" rel="next" title="LFSR trick">
+                LFSR trick  <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -479,7 +473,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#FlowDroid的环境搭建"><span class="nav-number">1.</span> <span class="nav-text">FlowDroid的环境搭建</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Obtaining-the-nightly-builds"><span class="nav-number">1.1.</span> <span class="nav-text">Obtaining the nightly builds</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Building-FlowDroid-From-Source"><span class="nav-number">1.2.</span> <span class="nav-text">Building FlowDroid From Source</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#动态规划之剪绳子"><span class="nav-number">1.</span> <span class="nav-text">动态规划之剪绳子</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#动态规划求解问题的四个特征："><span class="nav-number">1.1.</span> <span class="nav-text">动态规划求解问题的四个特征：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#题目描述："><span class="nav-number">1.2.</span> <span class="nav-text">题目描述：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码思路："><span class="nav-number">1.3.</span> <span class="nav-text">代码思路：</span></a></li></ol></li></ol></div>
             
           </div>
         </section>
