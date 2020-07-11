@@ -235,8 +235,8 @@
             
               
                 
-                <a class="post-title-link" href="/2020/07/11/论文阅读/" itemprop="url">
-                  Untitled
+                <a class="post-title-link" href="/2020/07/09/不安全的授权/" itemprop="url">
+                  App测试：不安全的授权
                 </a>
               
             
@@ -249,11 +249,30 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">Posted on</span>
-            <time itemprop="dateCreated" datetime="2020-07-11T20:43:40+08:00" content="2020-07-11">
-              2020-07-11
+            <time itemprop="dateCreated" datetime="2020-07-09T18:25:20+08:00" content="2020-07-09">
+              2020-07-09
             </time>
           </span>
 
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/App测试/" itemprop="url" rel="index">
+                    <span itemprop="name">App测试</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
           
 
           
@@ -278,121 +297,17 @@
 
       
         
-          
-            <h2 id="论文阅读"><a href="#论文阅读" class="headerlink" title="论文阅读"></a>论文阅读</h2><p>《基于威胁情报的安卓恶意应用溯源分析方案的研究》</p>
-<p>本文作者：杨明，温巧燕（导师）</p>
-<p><strong>备注：</strong>这篇文章读完，让我对android恶意样本中的威胁信息的采集、关联分析和溯源方式有了一个更加系统的了解。</p>
-<h3 id="基本知识"><a href="#基本知识" class="headerlink" title="基本知识"></a>基本知识</h3><p><strong>android恶意软件包括：</strong></p>
-<p>拦截马、勒索病毒、恶意广告类、隐私窃取类、恶意扣费类、远控类、色情类和其他类型。</p>
-<h5 id="溯源分析关键技术"><a href="#溯源分析关键技术" class="headerlink" title="溯源分析关键技术"></a>溯源分析关键技术</h5><ol>
-<li><p>域名/IP反查分析技术</p>
+          <h2 id="不安全的授权"><a href="#不安全的授权" class="headerlink" title="不安全的授权"></a>不安全的授权</h2><ol>
+<li><p>不安全的应用程序权限设置<br> （Android系统将权限分成了正常权限和敏感权限）</p>
 </li>
-<li><p>同源性分析技术</p>
+<li><p>冗余的权限设置</p>
 </li>
-<li><p>入侵日志分析</p>
-</li>
-<li><p>攻击模式分析技术</p>
-</li>
-<li><p>反向入侵技术</p>
-<p>对可疑的C&amp;C服务器、可疑域名进行反向入侵，获取攻击者服务器控制权，从攻击者的服务器上获取更多的溯源线索。</p>
-</li>
-</ol>
-<h5 id="传统威胁情报的内容："><a href="#传统威胁情报的内容：" class="headerlink" title="传统威胁情报的内容："></a>传统威胁情报的内容：</h5><p>样本哈希、IP、域名、网络主机特征、攻击工具、攻击战术、技术和过程中的任意一条或多条信息。</p>
-<p>一个APK的元数据是指其名称、包名以及证书信息的信息集合。</p>
-<p>证书相同的应用则很有可能这两款恶意应用由同一个开发者、团伙进行开发或者由同一类代码生成工具生成。</p>
-<p>（元数据维度的特征有助于找到使用工具批量生成的恶意软件。）</p>
-<h3 id="主要内容"><a href="#主要内容" class="headerlink" title="主要内容"></a>主要内容</h3><ol>
-<li><p>关联恶意样本的获取</p>
-<p><strong>从资源文件、网络、代码和元数据四个维度提取一系列特征</strong>，再针对各个维度构建相似度检测算法，并使用B-Tree索引、倒排索引等技术提高检测效率。</p>
-</li>
-<li><p>威胁情报的表示</p>
-<p>提出一种<strong>面向安卓端的威胁情报表达与共享规范</strong>，该规范从恶意软件的静态特征、动态特征两个角度并采用归纳法提出安卓恶意软件威胁情报数据模型与描述规范。然后利用python实现改进后情报的生成、解析与共享程序。</p>
-</li>
-<li><p>情报关联方法</p>
-<p>威胁情报关联方法上，传统上使用的是URL、IP等网络特征进行关联从而导致部分威胁情报被关联的问题。</p>
-<p>本文提出一种基于关联样本动静态特征的威胁情报关联方法。该方法通过安卓动态测试、静态测试技术提取给定样本及其关联样本的动静态特征，在提取特征时提出<strong>一套特征优化方案</strong>{提取更多有用特征减少干扰特征}，并采用直接匹配和间接匹配两种策略匹配情报，最后可视化实现关联样本以及情报的可视化工具。</p>
-</li>
-</ol>
-<p><img src="C:\Users\ychange\Desktop\威胁情报平台.png" alt="威胁情报平台"></p>
-<h3 id="研究现状"><a href="#研究现状" class="headerlink" title="研究现状"></a>研究现状</h3><ol>
-<li>关联样本分析时，一般采取文件哈希匹配、证书匹配、邮箱匹配等方式关联恶意样本，其关联算法没有考虑到代码、资源文件等深层次特征。</li>
-<li>主流威胁情报平台对移动恶意软件描述不全、无法描述</li>
-<li>传统威胁情报溯源平台较为注重单个样本的IP、URL、邮箱等网络特征指标，对于<strong>网络特征不明显的恶意样本</strong>获取关联情报的效果不佳。</li>
-</ol>
-<h4 id="关联恶意样本的获取"><a href="#关联恶意样本的获取" class="headerlink" title="关联恶意样本的获取"></a>关联恶意样本的获取</h4><ol>
-<li><p>元数据：样本名称、包名、以及证书MD5。</p>
-<p><strong>相似度检测</strong>：</p>
-<ol>
-<li>两个应用证书相同；</li>
-<li>包名、名称完全相同。</li>
-</ol>
-</li>
-<li><p>代码维度的特征选择：提取classes.dex文件的哈希值以及命中的风险函数。比如SimpleLocker家族风险函数。</p>
-<p><strong>检测方式</strong>：</p>
-<ol>
-<li>classes.dex是否完全一致 </li>
-<li><strong>Jaccard系数</strong>判断命中的风险函数集合，当阈值超过0.9时，说明在代码维度存在一定程度的相似。<strong>可以容忍一定程度的误判。</strong>分析人员可以进一步进行鉴别。</li>
-</ol>
-</li>
-<li><p>资源维度的特征：Manifest文件与布局文件这类XML类型文件，该类文件反映了恶意软件在界面、配置、功能上的相似性。（不直接对资源文件进行数据处理，速度太慢，不适合大规模的样本分析）</p>
-<p><strong>检测方式</strong>：基于<strong>BM25算法</strong>的相似度评分算法。把每一个应用作为一个“文档”，把布局文件和配置文件提取出的每一个XML元素当作关键词，对布局文件和配置文件进行文本相似度的计算。</p>
-</li>
-<li><p>网络信息维度的特征选择：应用的内嵌IP、域名、手机号、邮箱、社交网络账号（QQ号、微信号等）。</p>
-<p>通过Androguard提取出classes.dex、xml文件、内嵌apk文件中的可疑字符串，然后正则表达式进行过滤，得到APK内部的特征信息。</p>
-<p><strong>检测方式</strong>：通过数据库查询去判断是否为空的交集，如果交集不为空则没有问题。</p>
-<p>然后进行了效果的对比：</p>
-<p><img src="C:\Users\ychange\Desktop\算法评估.png" alt="算法评估"></p>
-<p>缺点：对于一些重打包的恶意应用与正常应用判定为相似应用。</p>
-</li>
-</ol>
-<h3 id="面向安卓的威胁情报表达与共享规范"><a href="#面向安卓的威胁情报表达与共享规范" class="headerlink" title="面向安卓的威胁情报表达与共享规范"></a>面向安卓的威胁情报表达与共享规范</h3><p>从恶意软件的静态特征、动态特征两个角度提出安卓恶意软件威胁情报描述规范，并利用Python实现改进后情报的生成、解析与共享程序。</p>
-<p>当前的主流框架还是以网络攻击的领域相关，并未对移动安全做出特殊的考虑。</p>
-<p><img src="C:\Users\ychange\Desktop\威胁情报规范.png" alt="威胁情报规范"></p>
-<p>6类数据对象：攻击者描述、工具、漏洞、指示器、关系、分析报告。</p>
-<p>生成了一套新的威胁情报表达与共享规范，从动静态特征的角度设计相关指标，从而让新的威胁情报平台可以更好精准、完备地描述安卓恶意软件信息。</p>
-<h3 id="基于关联样本的威胁情报关联方法"><a href="#基于关联样本的威胁情报关联方法" class="headerlink" title="基于关联样本的威胁情报关联方法"></a>基于关联样本的威胁情报关联方法</h3><p>目前主流威胁分析平台关联主要通过域名、IP、WHOIS注册信息等网络信息以及样本哈希等指标进行关联。</p>
-<p>在安卓溯源分析领域存在不足：</p>
-<ol>
-<li>对于勒索病毒、系统破坏类等对网络依赖性不强的恶意软件效果不佳。</li>
-<li>没有基于内部的细粒度特征作为关联指标，对于病毒变种没有检出能力。</li>
-<li>进行情报匹配时只考虑了单一样本，如某样本的文件哈希、证书哈希等。</li>
-</ol>
-<p><strong>三个步骤：</strong></p>
-<ol>
-<li>关联样本特征提取和优化（动静态特征）</li>
-<li><p>威胁情报IOC直接匹配与间接匹配 （对关联样本进行匹配，通过特征权重进行模糊匹配）</p>
-</li>
-<li><p>汇总与可视化。</p>
-</li>
-</ol>
-<p><strong>关联样本特征提取和优化</strong></p>
-<p>存在的问题：</p>
-<ol>
-<li>某些第三方库的敏感行为（监听短信、电话等正常操作）会对关联情报匹配产生干扰。</li>
-<li>动态测试，恶意行为覆盖面不全，可能会缺少关键特征。</li>
-</ol>
-<p>解决方案：</p>
-<ol>
-<li>主动触发机制。主动发送短信和接收短信、主动拨打电话与接听电话、主动运行银行、主动发送与接收短信。通过这种方式唤起样本的一些恶意操作。（Receiver组件中触发等。）</li>
-<li>可信依赖库机制，分析正常应用，然后基于Androguard逆向包结构，统计各个类库出现的频率，频率大于5%，就视为可依赖库。</li>
-<li>可信流量机制，设置域名、IP、邮箱白名单。</li>
-</ol>
-<p><strong>威胁情报直接匹配与间接匹配</strong></p>
-<p><strong>直接匹配：</strong></p>
-<p>传统方法仅仅使用单个样本的特征进行匹配，可以导致老病毒匹配上的威胁情报但其变种病毒却无法匹配原有的威胁情报。所以引入关联样本进行匹配</p>
-<p><strong>间接匹配：</strong></p>
-<p>如果本地数据库应用数量、种类有限或由于关联恶意样本检测算法本身局限性导致的关联恶意样本较少，可能会导致关联到的威胁情报数量不足。</p>
-<p>针对上述情况，通过计算<strong>每一个威胁情报中对安卓恶意软件的描述特征集合</strong>与<strong>输入样本及其关联样本的特征集合</strong>相似元素进行计算，权重使用IDF公式进行计算。当分数大于阈值时匹配成功。</p>
-<p><img src="C:\Users\ychange\Desktop\间接匹配.png" alt="间接匹配"></p>
-<p>L代表的是Ni这个情报特征的类别区分能力，L越大，类别区分能力就越强，所以L越大，Ni越属于M。</p>
-<p><strong><em><u>遍历输入样本的威胁情报元素，逐一将其放入关联样本威胁情报中计算其IDF值；值越大，就越能代表关联样本的特征，也就越能体现和关联样本的关系。</u></em></strong></p>
-<p><strong>关联样本和威胁情报可视化</strong></p>
-<p>使用Gephi框架，对输入样本、关联样本、攻击者情报、其他类型的情报进行可视化。</p>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>首先，本论文从关联样本的检测上，改变以往使用文件哈希匹配、证书匹配、邮箱匹配等方式关联恶意样本的方式，从资源文件、网络、代码和元数据四个维度提取一系列静态特征。</p>
-<p>然后，基于动静态特征提取出一套新的威胁情报表达与共享的规范，并实现了一个情报生成与解析的工具。</p>
-<p>最后，提取动静态特征，通过排除常见第三方库的干扰、排除一些常见的域名IP等信息，使用直接匹配和基于权重的间接匹配两种方式，将威胁情报和关联样本的威胁情报进行关联。</p>
-
-          
+<li><p>存在不安全的直接引用漏洞(IDOR)</p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2020/07/09/不安全的授权/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -476,7 +391,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-count">5</span>
                 <span class="site-state-item-name">categories</span>
               </a>
             </div>
@@ -485,7 +400,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-count">4</span>
                 <span class="site-state-item-name">tags</span>
               </a>
             </div>
